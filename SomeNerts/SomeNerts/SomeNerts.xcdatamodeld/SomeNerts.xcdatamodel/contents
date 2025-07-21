@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21513" systemVersion="22G74" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Game" representedClassName="Game" syncable="YES" codeGenerationType="class">
+        <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="isActive" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="winningScore" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="players" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Player" inverseName="game" inverseEntity="Player"/>
+        <relationship name="rounds" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Round" inverseName="game" inverseEntity="Round"/>
+    </entity>
+    <entity name="Player" representedClassName="Player" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="totalGames" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="totalScore" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="totalWins" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="game" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Game" inverseName="players" inverseEntity="Game"/>
+        <relationship name="scores" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Score" inverseName="player" inverseEntity="Score"/>
+    </entity>
+    <entity name="Round" representedClassName="Round" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="number" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="game" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Game" inverseName="rounds" inverseEntity="Game"/>
+        <relationship name="scores" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Score" inverseName="round" inverseEntity="Score"/>
+    </entity>
+    <entity name="Score" representedClassName="Score" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="value" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="player" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Player" inverseName="scores" inverseEntity="Player"/>
+        <relationship name="round" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Round" inverseName="scores" inverseEntity="Round"/>
+    </entity>
+</model>

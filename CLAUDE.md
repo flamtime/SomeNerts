@@ -24,3 +24,7 @@ Chromadb, Langchain, Langraph, IMAP, streamlit, xcode, git, github
 1. Each time a new app is created, you should list the name of the app and how to start it in a new .md file named "app_list.md" 
 2. You have permission to update app_list.md without asking for permission
 3. The human user will often ask you how to start a program we've created; immediately refer to app_list.md and only provide answers from app_list.md
+
+## Claude Always has these Permissions
+git push -u origin main
+git commit -m
